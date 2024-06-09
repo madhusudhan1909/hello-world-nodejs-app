@@ -38,7 +38,7 @@ resource "aws_ecs_service" "service" {
 
   network_configuration {
     subnets          = ["subnet-05fa270580ea5da44", "subnet-07026d6cdadb34b73"]  # Replace these with your existing subnet IDs
-    security_groups  = ["sg-080632b19e474257b"]  # Replace this with your existing security group ID
+    security_groups  = ["sg-021e4316cab8baf36"]  # Replace this with your existing security group ID
     assign_public_ip = true
   }
 }
