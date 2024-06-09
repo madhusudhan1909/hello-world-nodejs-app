@@ -12,11 +12,6 @@ resource "aws_subnet" "subnet" {
   availability_zone = "us-east-1a"
 }
 
-resource "aws_ecr_repository" "hello_world" {
-  name                 = "pearl-test"
-  image_tag_mutability = "MUTABLE"
-}
-
 resource "aws_ecs_cluster" "cluster" {
   name = "hello-world-cluster"
 }
