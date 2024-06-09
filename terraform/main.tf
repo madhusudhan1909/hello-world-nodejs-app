@@ -2,16 +2,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_vpc" "main" {
-  id = "vpc-0854d537bed2935cd"
-}
-
-resource "aws_subnet" "subnet" {
-  vpc_id            = aws_vpc.main.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
-}
-
 resource "aws_ecs_cluster" "cluster" {
   name = "hello-world-cluster"
 }
@@ -47,8 +37,8 @@ resource "aws_ecs_service" "service" {
   launch_type     = "FARGATE"
 
   network_configuration {
-    subnets          = ["subnet-05fa270580ea5da44", "subnet-07026d6cdadb34b73"]
-    security_groups  = ["sg-080632b19e474257b"]
+    subnets          = ["subnet-05fa270580ea5da44", "subnet-07026d6cdadb34b73"]  # Replace these with your existing subnet IDs
+    security_groups  = ["sg-080632b19e474257b"]  # Replace this with your existing security group ID
     assign_public_ip = true
   }
 }
@@ -56,7 +46,7 @@ resource "aws_ecs_service" "service" {
 resource "aws_security_group" "sg" {
   name        = "allow-http"
   description = "Allow HTTP inbound traffic"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = "vpc-0854d537bed2935cd"  # Replace this with your existing VPC ID
 
   ingress {
     from_port   = 3000
@@ -72,4 +62,5 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
+
 
