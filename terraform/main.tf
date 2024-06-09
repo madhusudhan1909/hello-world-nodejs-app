@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "main" {
-  cidr_block = "10.0.0.0/16"
+  id = "vpc-0854d537bed2935cd"
 }
 
 resource "aws_subnet" "subnet" {
