@@ -13,7 +13,7 @@ resource "aws_subnet" "subnet" {
 }
 
 resource "aws_ecr_repository" "hello_world" {
-  name                 = "hello-world"
+  name                 = "pearl-test"
   image_tag_mutability = "MUTABLE"
 }
 
@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = jsonencode([
     {
       name      = "hello-world"
-      image     = "${aws_ecr_repository.hello_world.repository_url}:latest"
+      image     = "public.ecr.aws/q6g9n2l9/pearl-test:latest"
       essential = true
 
       portMappings = [
